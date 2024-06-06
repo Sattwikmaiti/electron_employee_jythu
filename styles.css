@@ -1,0 +1,91 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color:#253a34;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    text-align: center;
+    background-color: #253a34;
+    padding: 20px;
+
+    border-radius: 10px;
+    box-shadow: 0 40px 60px rgba(20, 19, 19, 0.608);
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  img {
+    width: 200px;
+
+
+    opacity: 0;
+    animation: fadeInLogo 2s ease-in-out forwards;
+  }
+  
+  h1 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    color: #ffffff;
+    margin: 10px 0 5px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #253a34;
+    color:white !important;
+  }
+  
+  button {
+    background-color: #ffffff;
+
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInLogo {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+
+  #login-form{
+    width:20rem
+  }

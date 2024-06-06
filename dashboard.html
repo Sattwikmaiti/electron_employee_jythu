@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    body { 
+            font-family: Arial, sans-serif; 
+            background-color: #253a34;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin: 0; 
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        
+        .logo {
+            width: 250px;
+     
+            animation: fadeIn 2s ease-in-out;
+        }
+        h1 {
+            color: #adbf9e;
+        }
+        #welcome-message {
+            color: #adbf9e;
+            margin-bottom: 20px;
+        }
+        #logout-button {
+            background-color: #ff6666;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position:absolute;
+            top:10px;
+            right:10px;
+            transition: background-color 0.3s ease;
+        }
+        #logout-button:hover {
+            background-color: #ff4d4d;
+        }
+        #tabs {
+            display: flex; 
+            justify-content: center; 
+            margin-top: 20px; 
+        }
+        .tab { 
+            padding: 10px 20px; 
+            cursor: pointer; 
+         
+            border-bottom: none; 
+          
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            color:white
+           
+        }
+       
+        .tab.active { 
+            background-color: #43504c; 
+        }
+        .tab-content { 
+            display: none; 
+            padding: 20px; 
+          
+            border-top: none;
+            width: 80%;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .tab-content.active { 
+            display: block; 
+        }
+        #controls { 
+            text-align: center; 
+            margin-top: 20px; 
+        }
+         button {
+       
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease; 
+        }
+      
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+    background-color: #43504c;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: colorFadeIn 0.5s ease-in-out;
+}
+
+@keyframes colorFadeIn {
+    0% { background-color: rgba(230, 255, 230, 0.5); }
+    10% { background-color: rgba(230, 255, 230, 0.55); }
+    20% { background-color: rgba(230, 255, 230, 0.6); }
+    30% { background-color: rgba(230, 255, 230, 0.65); }
+    40% { background-color: rgba(230, 255, 230, 0.7); }
+    50% { background-color: rgba(230, 255, 230, 0.75); }
+    60% { background-color: rgba(230, 255, 230, 0.8); }
+    70% { background-color: rgba(230, 255, 230, 0.85); }
+    80% { background-color: rgba(230, 255, 230, 0.9); }
+    90% { background-color: rgba(230, 255, 230, 0.95); }
+    100% { background-color: rgba(230, 255, 230, 1); }
+
+
+
+
+}
+
+
+
+
+    </style>
+</head>
+<body>
+   
+    <h1>Welcome to the Dashboard</h1>
+    <img src="JPG.png" alt="Logo" class="logo">
+    <p id="welcome-message"></p>
+    <button id="logout-button">Logout</button>
+
+    <div id="tabs">
+        <div id="tab-buttons" class="tab active">Buttons and List</div>
+        <div id="tab-chart" class="tab">View Productivity Chart</div>
+    </div>
+    
+    <div id="tab-content-buttons" class="tab-content active">
+        <div id="controls">
+            <button id="start-btn">Start</button>
+            <button id="stop-btn" disabled>Stop and Send Report</button>
+            <button id="reset-btn" disabled>Reset</button>
+            <button id="show-chart-btn">Generate Productivity Chart</button>
+        </div>
+        <ul id="list"></ul>
+    </div>
+    
+    <div id="tab-content-chart" class="tab-content">
+        <canvas id="windowUsageChart" width="800" height="400"></canvas>
+    </div>
+
+    <script>
+
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const accessToken = localStorage.getItem('id');
+            if (!accessToken) {
+                window.location.href = 'login.html';
+            } else {
+                // Decode the JWT to get the username
+                // const payload = JSON.parse(atob(accessToken.split('.')[1]));
+                // const username = payload.username;
+
+                // Display the welcome message with the username
+                const welcomeMessage = document.getElementById('welcome-message');
+                welcomeMessage.textContent = `Welcome, ${localStorage.getItem('username')}!`;
+            }
+
+            // Logout button functionality
+            
+
+            // Tab switching functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(tc => tc.classList.remove('active'));
+                    
+                    tab.classList.add('active');
+                    tabContents[index].classList.add('active');
+                });
+            });
+        });
+
+
+        
+
+        
+    </script>
+    <script src="renderer.js"></script>
+</body>
+</html>
